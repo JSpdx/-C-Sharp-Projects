@@ -8,5 +8,6 @@ namespace BlackjackApp
 {
     interface IWalkAway
     {
+        void WalkAway(Player player);
     }
 }
