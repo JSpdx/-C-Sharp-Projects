@@ -15,7 +15,7 @@ namespace BlackjackApp
             game.ListPlayers();
             Console.ReadLine();
 
-            //Deck deck = new Deck();
+             //Deck deck = new Deck();
             //deck.Shuffle(3);
 
             //foreach (Card card in deck.Cards)
