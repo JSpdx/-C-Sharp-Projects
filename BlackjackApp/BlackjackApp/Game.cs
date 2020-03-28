@@ -13,7 +13,7 @@ namespace BlackjackApp
         public string Dealer { get; set; }
 
         public abstract void Play();
-        
+
         public virtual void ListPlayers()
         {
             foreach (Player player in Players)
