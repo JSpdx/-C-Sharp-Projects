@@ -24,7 +24,6 @@ namespace BlackjackApp
             [Face.King] = 10,
             [Face.Ace] = 1,
         };
-
         private static int[] GetAllPossibleHandValues(List<Card> Hand)
         {
             int aceCount = Hand.Count(x => x.Face == Face.Ace);
@@ -50,5 +49,17 @@ namespace BlackjackApp
             if (value == 21) return true;
             else return false;
         }
+
+        public static bool IsBusted(List<Card> Hand)
+        {
+            int value = GetAllPossibleHandValues(Hand).Min();
+            if (value > 21) return true;
+            else return false;
+        }
+
+        //public static bool shouldDealerStay(List<Card> Hand)
+        //{
+
+        //}
     }
 }

@@ -13,7 +13,7 @@ namespace BlackjackApp
         public override void Play()
         {
             Dealer = new TwentyOneDealer();
-            foreach (Player player in Players)
+            foreach (Player player in Players) //creates an empty hand object for each player
             {
                 player.Hand = new List<Card>();
                 player.Stay = false;
@@ -23,7 +23,7 @@ namespace BlackjackApp
             Dealer.Deck = new Deck();
             Console.WriteLine("Place your bet!");
 
-            foreach (Player player in Players)
+            foreach (Player player in Players)                  //takes bets
             {
                 int bet = Convert.ToInt32(Console.ReadLine());
                 bool successfullyBet = player.Bet(bet);
@@ -32,8 +32,8 @@ namespace BlackjackApp
                     return; 
                 }
                 Bets[player] = bet; 
-            }
-            for (int i = 0; i < 2; i++)
+            } 
+            for (int i = 0; i < 2; i++)                   // deals out two cards to players. checks for blackjack
             {
                 Console.WriteLine("Dealing...");
                 foreach (Player player in Players)
@@ -51,7 +51,7 @@ namespace BlackjackApp
                         }
                     }
                 }
-                Console.WriteLine("Dealer: ");
+                Console.WriteLine("Dealer: ");              //dealer deals self, checks for blackjack
                 Dealer.Deal(Dealer.Hand);
                 if ( i == 1)
                 {
@@ -66,6 +66,46 @@ namespace BlackjackApp
                     }
                 }
             }
+            foreach (Player player in Players)                  //logic for stay or hit
+            {
+                while (!player.Stay)
+                {
+                    Console.WriteLine("Your cards are: ");
+                    foreach (Card card in player.Hand)
+                    {
+                        Console.Write("{0} ", card.ToString());
+                    }
+                    Console.WriteLine("\n\nHit or stay?");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "stay")
+                    {
+                        player.Stay = true;
+                        break;
+                    }
+                    else if (answer == "hit")
+                    {
+                        Dealer.Deal(player.Hand);
+                    }
+                    bool busted = TwentyOneRules.IsBusted(player.Hand);
+                    if (busted)
+                    {
+                        Dealer.Balance += Bets[player];
+                        Console.WriteLine("{0} Busted! You lose your bet of {1}. Your balance is now {2}", player.Name, Bets[player], player.Balance);
+                        Console.WriteLine("Do you want to play again?");
+                        answer = Console.ReadLine().ToLower();
+                        if (answer == "yes" || answer == "y" || answer == "yeah")
+                        {
+                            player.IsActivelyPlaying = true;
+                        }
+                        else
+                        {
+                            player.IsActivelyPlaying = false;
+                        }
+                    }
+                }
+            }
+            Dealer.isBusted = TwentyOneRules.IsBusted(Dealer.Hand);
+            //Dealer.Stay = TwentyOneRules
 
         }
         public override void ListPlayers()
