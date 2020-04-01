@@ -69,5 +69,17 @@ namespace BlackjackApp
             }
             return false; 
         }
+
+        public static bool? CompareHands(List<Card> PlayerHand, List<Card> DealerHand)
+        {
+            int[] playerResults = GetAllPossibleHandValues(PlayerHand);
+            int[] dealerResults = GetAllPossibleHandValues(DealerHand);
+
+            int PlayerScore = playerResults.Where(x => x < 22).Max();  // gets the largest value of all values that are below 22
+            int dealerScore = dealerResults.Where(x => x < 22).Max();
+            if (PlayerScore > dealerScore) return true;
+            else if (PlayerScore < dealerScore) return false;
+            else return null;
+        }
     }
 }
