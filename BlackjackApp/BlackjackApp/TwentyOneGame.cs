@@ -26,12 +26,12 @@ namespace BlackjackApp
             foreach (Player player in Players)                  //takes bets
             {
                 int bet = Convert.ToInt32(Console.ReadLine());
-                bool successfullyBet = player.Bet(bet);
+                bool successfullyBet = player.Bet(bet);        //this is where the money is actually taken from the player's balance.
                 if (!successfullyBet)
                 {
                     return; 
                 }
-                Bets[player] = bet; 
+                Bets[player] = bet;                       // Bet dictionary is populated . <player, bet> 
             } 
             for (int i = 0; i < 2; i++)                   // deals out two cards to players. checks for blackjack
             {
@@ -66,7 +66,7 @@ namespace BlackjackApp
                     }
                 }
             }
-            foreach (Player player in Players)                  //logic for stay or hit
+            foreach (Player player in Players)                  //logic for if the player will stay or hit, and if they bust
             {
                 while (!player.Stay)
                 {
@@ -104,8 +104,34 @@ namespace BlackjackApp
                     }
                 }
             }
-            Dealer.isBusted = TwentyOneRules.IsBusted(Dealer.Hand);
-            //Dealer.Stay = TwentyOneRules
+            Dealer.isBusted = TwentyOneRules.IsBusted(Dealer.Hand);         //check if the dealer busts
+            Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.Hand);     //check if the dealer stays
+            while ( !Dealer.Stay && !Dealer.isBusted)
+            {
+                Console.WriteLine("Dealer is hitting...");                   //dealer hits, then checks again if they busted or they should stay. The loop breaks when either condition occurs
+                Dealer.Deal(Dealer.Hand);                                  
+                Dealer.isBusted = TwentyOneRules.IsBusted(Dealer.Hand);
+                Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.Hand); 
+            }
+            if (Dealer.Stay)
+            {
+                Console.WriteLine("Dealer is staying.");
+            }
+            if (Dealer.isBusted)                                            //if dealer busts, perform payout, then return
+            {
+                Console.WriteLine("Dealer Busted!");
+                foreach (KeyValuePair<Player, int> entry in Bets)
+                {
+                    Console.WriteLine("{0} won {1}!", entry.Key.Name, entry.Value);
+                    Players.Where(x => x.Name == entry.Key.Name).First().Balance += (entry.Value * 2); //cross references the player in the Bets dictionary, adds their bet back to their balance plus their winnings
+                    Dealer.Balance -= entry.Value;
+                }
+                return;
+            }
+            foreach (Player player in Players)
+            {
+                bool? playerWon = TwentyOneRules.CompareHands(player.Hand, Dealer.Hand);
+            }
 
         }
         public override void ListPlayers()

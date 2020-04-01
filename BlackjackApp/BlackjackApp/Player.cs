@@ -20,7 +20,7 @@ namespace BlackjackApp
         public bool IsActivelyPlaying { get; set; }
         public bool Stay { get; set; }
 
-        public bool Bet(int amount)
+        public bool Bet(int amount)        // subtracts the bet from the player's balance, and returns true of false if it was successful
         {
             if (Balance - amount < 0)
             {
@@ -29,7 +29,7 @@ namespace BlackjackApp
             }
             else
             {
-                Balance -= amount;
+                Balance -= amount;          //subtracts bet from player's balance
                 return true;
             }
         }
