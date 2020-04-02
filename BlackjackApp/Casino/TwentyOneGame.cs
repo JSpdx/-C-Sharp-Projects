@@ -24,11 +24,20 @@ namespace Casino.TwentyOne
             Dealer.Deck = new Deck();
             Dealer.Deck.Shuffle();
 
-            Console.WriteLine("Place your bet!");
-
             foreach (Player player in Players)                  //takes bets
             {
-                int bet = Convert.ToInt32(Console.ReadLine());
+                bool validAnswer = false;
+                int bet = 0;
+                while (!validAnswer)
+                {
+                    Console.WriteLine("Place your bet!");
+                    validAnswer = int.TryParse(Console.ReadLine(), out bet);
+                    if (!validAnswer) Console.WriteLine("please enter digits only, no decimals");
+                }
+                if (bet < 0)
+                {
+                    throw new FraudException();
+                }
                 bool successfullyBet = player.Bet(bet);        //this is where the money is actually taken from the player's balance.
                 if (!successfullyBet)
                 {
