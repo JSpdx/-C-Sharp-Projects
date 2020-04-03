@@ -44,20 +44,21 @@ namespace BlackjackApp
                 player.IsActivelyPlaying = true;
                 while (player.IsActivelyPlaying && player.Balance > 0)
                 {
-                    Guid   
                     try
                     {
                         game.Play();
                     }
-                    catch (FraudException)
+                    catch (FraudException ex)
                     {
-                        Console.WriteLine("Security! Kick this person out.");
+                        Console.WriteLine(ex.Message);
+                        updateDbWithException(ex);
                         Console.ReadLine();
                         return;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         Console.WriteLine("An error occured. Please contact your system administrator.");
+                        updateDbWithException(ex);
                         Console.ReadLine();
                         return;
 
@@ -75,7 +76,7 @@ namespace BlackjackApp
             string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = TwentyOneGame;
                                       Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False;
                                       ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
-            string queryString = @"INSERT INTO Exceptions (Exception Type, ExceptionMessage, TimeStamp) VALUES
+            string queryString = @"INSERT INTO Exceptions (ExceptionType, ExceptionMessage, TimeStamp) VALUES
                                     (@ExceptionType, @ExceptionMessage, @TimeStamp)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -92,8 +93,6 @@ namespace BlackjackApp
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-                
-                
             }
         }
     }
