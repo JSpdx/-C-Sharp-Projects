@@ -6,8 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e2f6c66654f044bd9ff1b4e77653b845" Name="Diagram1">
         <EntityTypeShape EntityType="CarInsuranceModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarInsuranceModel.Car" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="CarInsuranceModel.FK_Cars_Customers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarInsuranceModel.Car" Width="1.5" PointX="2.875" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="CarInsuranceModel.FK_Cars_Customers" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.25" PointY="1.7688105330230493" />
+          <ConnectorPoint PointX="2.771875" PointY="1.7688105330230493" />
+          <ConnectorPoint PointX="2.771875" PointY="1.7473017614700379" />
+          <ConnectorPoint PointX="2.875" PointY="1.7473017614700379" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

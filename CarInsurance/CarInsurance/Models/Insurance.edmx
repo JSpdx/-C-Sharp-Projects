@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CarInsuranceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CarInsurance.dbo.Cars' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Cars">
@@ -32,6 +32,7 @@ warning 6002: The table/view 'CarInsurance.dbo.Cars' does not have a primary key
           <Property Name="HadDUI" Type="bit" />
           <Property Name="Tickets" Type="int" />
           <Property Name="Coverage" Type="varchar" MaxLength="20" />
+          <Property Name="Quote" Type="decimal" Precision="14" Scale="0" />
         </EntityType>
         <Association Name="FK_Cars_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
@@ -60,8 +61,7 @@ warning 6002: The table/view 'CarInsurance.dbo.Cars' does not have a primary key
             <End Role="Cars" EntitySet="Cars" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarInsuranceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -79,6 +79,7 @@ warning 6002: The table/view 'CarInsurance.dbo.Cars' does not have a primary key
           <Property Name="Tickets" Type="Int32" />
           <Property Name="Coverage" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Customers" FromRole="Customers" ToRole="Cars" />
+          <Property Name="Quote" Type="Decimal" Precision="14" Scale="0" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -122,6 +123,7 @@ warning 6002: The table/view 'CarInsurance.dbo.Cars' does not have a primary key
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CarInsuranceModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Quote" ColumnName="Quote" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

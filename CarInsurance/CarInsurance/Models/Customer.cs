@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarInsurance
+namespace CarInsurance.Models
 {
     using System;
     using System.Collections.Generic;
@@ -29,6 +29,7 @@ namespace CarInsurance
         public Nullable<bool> HadDUI { get; set; }
         public Nullable<int> Tickets { get; set; }
         public string Coverage { get; set; }
+        public Nullable<decimal> Quote { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }

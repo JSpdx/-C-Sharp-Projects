@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarInsurance
+namespace CarInsurance.Models
 {
     using System;
     using System.Data.Entity;

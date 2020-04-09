@@ -129,27 +129,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Car.cs">
+    <Compile Include="Models\Car.cs">
       <DependentUpon>Insurance.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Customer.cs">
+    <Compile Include="Models\Customer.cs">
       <DependentUpon>Insurance.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Insurance.Context.cs">
+    <Compile Include="Models\Insurance.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Insurance.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Insurance.cs">
+    <Compile Include="Models\Insurance.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Insurance.tt</DependentUpon>
     </Compile>
-    <Compile Include="Insurance.Designer.cs">
+    <Compile Include="Models\Insurance.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Insurance.edmx</DependentUpon>
@@ -165,23 +165,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Insurance.Context.tt">
+    <Content Include="Models\Insurance.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Insurance.edmx</DependentUpon>
       <LastGenOutput>Insurance.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Insurance.tt">
+    <Content Include="Models\Insurance.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Insurance.edmx</DependentUpon>
       <LastGenOutput>Insurance.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Insurance.edmx">
+    <EntityDeploy Include="Models\Insurance.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Insurance.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Insurance.edmx.diagram">
+    <Content Include="Models\Insurance.edmx.diagram">
       <DependentUpon>Insurance.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -206,13 +206,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Quote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
