@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CarInsurance.Models.Customer
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,92 +8,93 @@
         <p class="lead">When things go wrong, we call ourselves.</p>
     </div>
 
-<form>
-    <h2><b>Get a quote now!</b></h2>
-    <div class="form-group row">
-        <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="FirstName" placeholder="First Name">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="LastName" class="col-sm-2 col-form-label">Last Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Last Name" placeholder="Last Name">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="DOB" class="col-sm-2 col-form-label">Date of Birth</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="DOB" placeholder="DOB">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-2"><b>Have you had a dui?</b></div>
-        <div class="col-sm-10">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="DUI">
-                <label class="form-check-label" for="DUI">
-                    (Check if yes)
-                </label>
+
+    <form action="/Home/Quote" method="post">
+        <h2><b>Get a quote now!</b></h2>
+        <div class="form-group row">
+            <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="firstName">
             </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="tickets" class="col-sm-2 col-form-label">How many traffic tickets do you have?</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" id="tickets" placeholder="0">
+        <div class="form-group row">
+            <label for="LastName" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="lastName">
+            </div>
         </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="carMake" class="col-sm-2 col-form-label">Car Make</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="carMake" placeholder="Make">
+        <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail" placeholder="Email Address" name="emailAddress">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="carModel" class="col-sm-2 col-form-label">Car Model</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="carModel" placeholder="Model">
+        <div class="form-group row">
+            <label for="DOB" class="col-sm-2 col-form-label">Date of Birth</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="DOB" placeholder="DOB" name="DOB">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="carYear" class="col-sm-2 col-form-label">Car Year</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="carYear" placeholder="Year">
-        </div>
-    </div>
-
-    <fieldset class="form-group">
-        <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Insurance Type</legend>
+        <div class="form-group row">
+            <div class="col-sm-2"><b>Have you had a dui?</b></div>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="fullCoverage" value="fullCoverage" checked>
-                    <label class="form-check-label" for="fullCoverage">
-                        Full Coverage
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="liability" value="liability">
-                    <label class="form-check-label" for="liability">
-                        Liability
+                    <input class="form-check-input" type="checkbox" id="DUI" name="hadDUI">
+                    <label class="form-check-label" for="DUI">
+                        (Check if yes)
                     </label>
                 </div>
             </div>
         </div>
-    </fieldset>
-    
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group row">
+            <label for="tickets" class="col-sm-2 col-form-label">How many traffic tickets do you have?</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="tickets" placeholder="0" name="tickets">
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="form-group row">
+            <label for="carMake" class="col-sm-2 col-form-label">Car Make</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="carMake" placeholder="Make" name="carMake">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="carModel" class="col-sm-2 col-form-label">Car Model</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="carModel" placeholder="Model" name="carModel">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="carYear" class="col-sm-2 col-form-label">Car Year</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="carYear" placeholder="2020" name="carYear">
+            </div>
+        </div>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Insurance Type</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="coverage" id="fullCoverage" value="Full Coverage" checked />                      
+                        <label class="form-check-label" for="fullCoverage">
+                            Full Coverage
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="coverage" id="liability" value="Liability">
+                        <label class="form-check-label" for="liability">
+                            Liability
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>

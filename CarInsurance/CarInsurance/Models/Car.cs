@@ -18,6 +18,7 @@ namespace CarInsurance.Models
         public int CarYear { get; set; }
         public string CarMake { get; set; }
         public string CarModel { get; set; }
+        public int ID { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

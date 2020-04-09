@@ -16,9 +16,18 @@ namespace CarInsurance.Controllers
         }
 
         [HttpPost]
-        public ActionResult Quote(string firstName, string lastName, string emailAddress, DateTime DOB, bool? hadDUI, int? tickets, string coverage, decimal? quote, ICollection<Car> cars)
+        public ActionResult Quote(string firstName, string lastName, string emailAddress, DateTime DOB, string hadDUI, int? tickets, string coverage, int carYear, string carMake, string carModel)
         {
-            
+            using (CarInsuranceEntities db = new CarInsuranceEntities())
+            {
+                var customer = new Customer() { FirstName = firstName, LastName = lastName, EmailAddress = emailAddress, DOB = DOB, HadDUI = hadDUI, Tickets = tickets, Coverage = coverage };
+                var car = new Car() { CarYear = carYear, CarMake = carMake, CarModel = carModel };
+                             
+                db.Customers.Add(customer);
+                db.Cars.Add(car);
+                db.SaveChanges();
+
+            }
             return View();
         }
     }

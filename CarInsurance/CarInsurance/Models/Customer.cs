@@ -26,7 +26,7 @@ namespace CarInsurance.Models
         public string EmailAddress { get; set; }
         public System.DateTime DOB { get; set; }
         public Nullable<int> CarsInsured { get; set; }
-        public Nullable<bool> HadDUI { get; set; }
+        public string HadDUI { get; set; }
         public Nullable<int> Tickets { get; set; }
         public string Coverage { get; set; }
         public Nullable<decimal> Quote { get; set; }
