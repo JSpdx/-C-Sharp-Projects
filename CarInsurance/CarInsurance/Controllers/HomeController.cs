@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarInsurance.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +15,10 @@ namespace CarInsurance.Controllers
             return View();
         }
 
-        public ActionResult Quote()
+        [HttpPost]
+        public ActionResult Quote(string firstName, string lastName, string emailAddress, DateTime DOB, bool? hadDUI, int? tickets, string coverage, decimal? quote, ICollection<Car> cars)
         {
+            
             return View();
         }
     }
