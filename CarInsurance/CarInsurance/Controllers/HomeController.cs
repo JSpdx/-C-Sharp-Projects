@@ -16,6 +16,19 @@ namespace CarInsurance.Controllers
             return View();
         }
 
+        public ActionResult Admin()
+        {
+            using (CarInsuranceEntities db = new CarInsuranceEntities())
+            {
+                var quoteList = new List<Customer>();
+                foreach (var customer in db.Customers)
+                {
+                    quoteList.Add(customer);
+                }
+                return View(quoteList);
+            }
+        }
+
         [HttpPost]
         public ActionResult Quote(string firstName, string lastName, string emailAddress, DateTime DOB, string hadDUI, int? tickets, string coverage, int carYear, string carMake, string carModel)
         {
@@ -57,5 +70,7 @@ namespace CarInsurance.Controllers
 
             return Convert.ToInt32(quote);
         }
+    
+        
     }
 }

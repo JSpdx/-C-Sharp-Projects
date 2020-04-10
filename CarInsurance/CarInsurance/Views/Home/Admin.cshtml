@@ -1,0 +1,30 @@
+﻿@using CarInsurance.Models
+@model List<Customer>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+
+@{
+    foreach (var customer in Model)
+    {
+        <div class="card" class="alert-info">
+            <div class="card-body alert-info">
+                <p>First name: @customer.FirstName</p>
+                <p>Last name: @customer.LastName</p>
+                <p>Email: @customer.EmailAddress</p>
+                <p>Quote: $@customer.Quote.00 per month</p>
+            </div>
+        </div>
+        <div>
+            <br />
+        </div>
+    }
+
+}
+
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
