@@ -28,10 +28,11 @@ namespace CarInsurance.Controllers
                 db.Cars.Add(car);
                 db.SaveChanges();
 
-                var customerVm = new CustomerVM();
+                var customerVm = new CustomerVM() { FirstName = customer.FirstName, LastName = customer.LastName, Quote = customer.Quote, Coverage = customer.Coverage};
+                
 
+            return View(customerVm);
             }
-            return View();
         }
 
         private int getQuote(Customer customer, Car car)

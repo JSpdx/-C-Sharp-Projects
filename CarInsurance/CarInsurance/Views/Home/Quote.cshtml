@@ -1,7 +1,9 @@
-﻿@model CarInsurance.ViewModels.CustomerVM
+﻿@using CarInsurance.ViewModels
+@model CustomerVM
 @{
     ViewBag.Title = "Quote";
 }
 
 <h2>Quote</h2>
-@{ CarInsurance}
+
+<h4>@Model.Coverage for @Model.FirstName @Model.LastName: <br /> $@Model.Quote.00 per Month</h4>
